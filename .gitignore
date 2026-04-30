@@ -1,0 +1,10 @@
+# Builds & logs
+bin/Debug/
+output/
+obj/
+*.exe
+*.o
+*.log
+.DS_Store
+Thumbs.db
+.vs/
