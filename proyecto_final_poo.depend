@@ -1,4 +1,39 @@
 # depslib dependency file v1.0
-1743445502 source:c:\users\franky\proyects\proyecto_final_poo\main.cpp
+1777564757 source:c:\users\franky\proyects\proyecto_final_poo\main.cpp
 	<iostream>
+	"App.h"
+	<windows.h>
+
+1777564234 c:\users\franky\proyects\proyecto_final_poo\include\menu.h
+	"Console.h"
+	"Utilidades.h"
+
+1777556034 c:\users\franky\proyects\proyecto_final_poo\include\console.h
+
+1777556034 c:\users\franky\proyects\proyecto_final_poo\include\utilidades.h
+	<string>
+
+1777556034 source:c:\users\franky\proyects\proyecto_final_poo\src\console.cpp
+	"Console.h"
+	<stdlib.h>
+
+1777564196 source:c:\users\franky\proyects\proyecto_final_poo\src\menu.cpp
+	"Menu.h"
+	<iostream>
+	<stdexcept>
+	<windows.h>
+
+1777556034 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
+	"Utilidades.h"
+	<cctype>
+
+1777606555 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+	"Console.h"
+	"Utilidades.h"
+
+1777606565 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
+	"App.h"
+	<iostream>
+	<stdexcept>
+	<windows.h>
 
