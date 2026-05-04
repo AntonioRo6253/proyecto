@@ -37,11 +37,17 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/App.h" />
+		<Unit filename="include/Articulo.h" />
 		<Unit filename="include/Console.h" />
+		<Unit filename="include/Manual.h" />
+		<Unit filename="include/Pagina.h" />
 		<Unit filename="include/Utilidades.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/App.cpp" />
+		<Unit filename="src/Articulo.cpp" />
 		<Unit filename="src/Console.cpp" />
+		<Unit filename="src/Manual.cpp" />
+		<Unit filename="src/Pagina.cpp" />
 		<Unit filename="src/Utilidades.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
