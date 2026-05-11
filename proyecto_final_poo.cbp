@@ -49,6 +49,7 @@
 		<Unit filename="src/Manual.cpp" />
 		<Unit filename="src/Pagina.cpp" />
 		<Unit filename="src/Utilidades.cpp" />
+		<Unit filename="src/operacionesConVectores.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

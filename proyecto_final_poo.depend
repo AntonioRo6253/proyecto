@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1777564757 source:c:\users\franky\proyects\proyecto_final_poo\main.cpp
+1777884492 source:c:\users\franky\proyects\proyecto_final_poo\main.cpp
 	<iostream>
 	"App.h"
 	<windows.h>
@@ -8,12 +8,12 @@
 	"Console.h"
 	"Utilidades.h"
 
-1777556034 c:\users\franky\proyects\proyecto_final_poo\include\console.h
+1777884492 c:\users\franky\proyects\proyecto_final_poo\include\console.h
 
-1777556034 c:\users\franky\proyects\proyecto_final_poo\include\utilidades.h
+1777884492 c:\users\franky\proyects\proyecto_final_poo\include\utilidades.h
 	<string>
 
-1777556034 source:c:\users\franky\proyects\proyecto_final_poo\src\console.cpp
+1777884492 source:c:\users\franky\proyects\proyecto_final_poo\src\console.cpp
 	"Console.h"
 	<stdlib.h>
 
@@ -23,17 +23,63 @@
 	<stdexcept>
 	<windows.h>
 
-1777556034 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
+1777884492 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
 	"Utilidades.h"
 	<cctype>
 
-1777606555 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+1777884492 c:\users\franky\proyects\proyecto_final_poo\include\app.h
 	"Console.h"
 	"Utilidades.h"
 
-1777606565 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
+1778528849 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
 	"App.h"
 	<iostream>
 	<stdexcept>
 	<windows.h>
+	<fstream>
+	<vector>
+	<algorithm>
+	<sstream>
+	"Articulo.h"
+
+1778528849 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
+	"Pagina.h"
+	<string>
+	<vector>
+	<ostream>
+
+1778528849 c:\users\franky\proyects\proyecto_final_poo\include\pagina.h
+	<string>
+	<vector>
+
+1778529095 source:c:\users\franky\proyects\proyecto_final_poo\src\articulo.cpp
+	"Articulo.h"
+	<iostream>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+	"Articulo.h"
+
+1778529095 source:c:\users\franky\proyects\proyecto_final_poo\src\manual.cpp
+	"Manual.h"
+	<iostream>
+	<fstream>
+	<sstream>
+
+1778529095 c:\users\franky\proyects\proyecto_final_poo\include\manual.h
+	"Pagina.h"
+	<vector>
+
+1778527233 source:c:\users\franky\proyects\proyecto_final_poo\src\operacionesconvectores.cpp
+	"operacionesConVectores.h"
+	<cctype>
+
+1778527233 c:\users\franky\proyects\proyecto_final_poo\include\operacionesconvectores.h
+	<string>
+	<vector>
+	"Articulo.h"
+
+1778529116 source:c:\users\franky\proyects\proyecto_final_poo\src\pagina.cpp
+	"Pagina.h"
 
