@@ -1,5 +1,5 @@
 #include "Articulo.h"
-    #include <iostream>
+#include <iostream>
 #include <fstream> // Librería necesaria para manejo de archivos
 #include <string>
 #include <sstream>
@@ -10,113 +10,63 @@ Articulo::Articulo()
 {
     //ctor
 }
-void Articulo::guardarTXT() {
 
-    // 1. Crear el objeto de flujo de salida (ofstream)
-    std::ofstream archivo("datos.txt");
+std::istream& operator>>(std::istream& in, Articulo& art)
+{
+    std::cout << "\nTitulo: ";
+    in >> art.titulo;
+    std::cout << "\nAutor: ";
+    in >> art.autor;
+    std::cout << "\nFecha:\nDia: ";
+    in >> art.fecha[0];
+    std::cout << "\nMes: ";
+    in >> art.fecha[1];
+    std::cout << "\nAño: ";
+    in >> art.fecha[2];
+    std::cout << "\nContenido: ";
+    in >> art.contenido;
 
-    // 2. Verificar si el archivo se abrió correctamente
-    if (archivo.is_open()) {
-        // 3. Escribir texto en el archivo
-        archivo << 1 << std::endl; // 1 articulo 2 manual
-        archivo << titulo << std::endl;
-        archivo << autor  << std::endl;
-        archivo << fecha  << std::endl;
-        archivo << contenido  << std::endl;
-        // Serializar tags como lista separada por comas
-        std::ostringstream tags_ss;
-        for (size_t i = 0; i < tags.size(); ++i) {
-            if (i) tags_ss << ",";
-            tags_ss << tags[i];
-        }
-        archivo << tags_ss.str() << std::endl;
-        archivo << calificacion << std::endl << std::endl;
+    art.tags.clear();
 
-        // 4. Cerrar el archivo (buena práctica)
-        archivo.close();
-        std::cout << "Archivo guardado con exito." << std::endl;
-    } else {
-        std::cerr << "Error al abrir el archivo." << std::endl;
-    }
-}
-Articulo Articulo::buscarTXT(const std::string& text) {
-    std::ifstream archivoLectura("datos.txt");
-    Articulo aux;
+    int numTags = 0;
+    std::cout << "\n¿Cuántos tags quieres agregar? ";
+    in >> numTags;
 
-    if (!archivoLectura.is_open()) {
-        std::cerr << "Error: No se pudo abrir el archivo para lectura." << std::endl;
-        return aux;
-    }
-
-    std::string tipo;
-    bool encontrado = false;
-
-    while (std::getline(archivoLectura, tipo)) {
-        if (tipo != "1") {
-            continue;
-        }
-
-        Articulo actual;
-        std::getline(archivoLectura, actual.titulo);
-        std::getline(archivoLectura, actual.autor);
-        std::getline(archivoLectura, actual.fecha);
-        std::getline(archivoLectura, actual.contenido);
-
-        std::string tags_line;
-        std::getline(archivoLectura, tags_line);
-        actual.tags.clear();
-        std::istringstream tss(tags_line);
+    std::cout << "\nIntroduce los tags (uno por uno, presiona Enter tras cada uno):\n";
+    for (int i = 0; i < numTags; ++i)
+    {
         std::string tag;
-        while (std::getline(tss, tag, ',')) {
-            if (!tag.empty()) {
-                actual.tags.push_back(tag);
-            }
-        }
-
-        std::string calif_line;
-        if (std::getline(archivoLectura, calif_line)) {
-            try {
-                actual.calificacion = std::stoi(calif_line);
-            } catch (...) {
-                actual.calificacion = 0;
-            }
-        }
-
-        std::string separador;
-        std::getline(archivoLectura, separador);
-
-        if (actual.titulo.find(text) != std::string::npos ||
-            actual.autor.find(text) != std::string::npos ||
-            actual.fecha.find(text) != std::string::npos ||
-            actual.contenido.find(text) != std::string::npos) {
-            aux = actual;
-            encontrado = true;
-            break;
-        }
+        in >> tag;
+        art.tags.push_back(tag); // Agrega el tag al final del vector
     }
 
-    if (!encontrado) {
-        std::cout << "No se encontró el registro." << std::endl;
+    std::cout << "\nTus tags son:\n";
+    for (const std::string& tag : art.tags)
+    {
+        std::cout << "[" << tag << "] ";
     }
-
-    return aux;
+    std::cout << std::endl;
+    return in;
 }
 
-// Operador de salida global
-std::ostream& operator<<(std::ostream& out, const Articulo& obj){
+std::ostream& operator<<(std::ostream& out, const Articulo& art)
+{
     out << "\n-----------| Articulo |-----------\n"
-        << "Titulo: " << obj.titulo << std::endl
-        << "Autor: " << obj.autor << std::endl
-        << "Fecha: " << obj.fecha << std::endl
-        << "Contenido: " << obj.contenido << std::endl
+        << "Titulo: " << art.titulo << std::endl
+        << "Autor: " << art.autor << std::endl
+        << "Fecha: " << art.fecha[0] << '/' << art.fecha[1] << '/' << art.fecha[2] << std::endl
+        << "Contenido: " << art.contenido << std::endl
         << "Tags: ";
 
-    for (size_t i = 0; i < obj.tags.size(); ++i) {
+    for (size_t i = 0; i < art.tags.size(); ++i)
+    {
         if (i) out << ", ";
-        out << obj.tags[i];
+        out << art.tags[i];
     }
 
     out << std::endl
-        << "Calificacion: " << obj.calificacion << std::endl;
+        << "Calificacion: " << art.calificacion << std::endl;
     return out;
 }
+
+

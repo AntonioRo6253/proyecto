@@ -10,7 +10,7 @@
 
 1777884492 c:\users\franky\proyects\proyecto_final_poo\include\console.h
 
-1777884492 c:\users\franky\proyects\proyecto_final_poo\include\utilidades.h
+1778642633 c:\users\franky\proyects\proyecto_final_poo\include\utilidades.h
 	<string>
 
 1777884492 source:c:\users\franky\proyects\proyecto_final_poo\src\console.cpp
@@ -23,36 +23,38 @@
 	<stdexcept>
 	<windows.h>
 
-1777884492 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
+1778644348 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
 	"Utilidades.h"
 	<cctype>
-
-1777884492 c:\users\franky\proyects\proyecto_final_poo\include\app.h
-	"Console.h"
-	"Utilidades.h"
-
-1778528849 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
-	"App.h"
+	<stdlib.h>
+	<string>
 	<iostream>
 	<stdexcept>
-	<windows.h>
-	<fstream>
+
+1778655161 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+	"Utilidades.h"
 	<vector>
-	<algorithm>
-	<sstream>
+	"Pagina.h"
+	"Articulo.h"
+	"Manual.h"
+
+1778655433 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
+	"App.h"
+	<iostream>
+	<vector>
 	"Articulo.h"
 
-1778528849 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
+1778655400 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
 	"Pagina.h"
 	<string>
 	<vector>
-	<ostream>
+	<iostream>
 
-1778528849 c:\users\franky\proyects\proyecto_final_poo\include\pagina.h
+1778653839 c:\users\franky\proyects\proyecto_final_poo\include\pagina.h
 	<string>
 	<vector>
 
-1778529095 source:c:\users\franky\proyects\proyecto_final_poo\src\articulo.cpp
+1778655400 source:c:\users\franky\proyects\proyecto_final_poo\src\articulo.cpp
 	"Articulo.h"
 	<iostream>
 	<fstream>
@@ -61,13 +63,13 @@
 	<algorithm>
 	"Articulo.h"
 
-1778529095 source:c:\users\franky\proyects\proyecto_final_poo\src\manual.cpp
+1778655576 source:c:\users\franky\proyects\proyecto_final_poo\src\manual.cpp
 	"Manual.h"
 	<iostream>
 	<fstream>
 	<sstream>
 
-1778529095 c:\users\franky\proyects\proyecto_final_poo\include\manual.h
+1778655589 c:\users\franky\proyects\proyecto_final_poo\include\manual.h
 	"Pagina.h"
 	<vector>
 

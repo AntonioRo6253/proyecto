@@ -6,12 +6,10 @@
 
 class Manual : public Pagina
 {
-    public:
-        Manual();
+public:
+    Manual();
     std::vector<std::string> pasos;
-        std::string requisitos;
-    void guardarTXT();
-    Manual buscarTXT(const std::string& text);
+    std::string requisitos;
 };
 
 #endif // MANUAL_H

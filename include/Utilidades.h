@@ -7,7 +7,9 @@ class Utilidades
 {
 protected:
     bool isTexto(std::string texto);
-    bool isEntero(int entero);
+    void limpiarTerminal();
+    void mostrarTitulo(std::string texto);
+    int solicitarNum();
 };
 
 #endif // UTILIDADES_H

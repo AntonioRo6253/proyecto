@@ -1,20 +1,16 @@
 #ifndef ARTICULO_H
 #define ARTICULO_H
-
 #include "Pagina.h"
 #include <string>
 #include <vector>
-#include <ostream>
+#include <iostream>
 
 class Articulo : public Pagina
 {
 public:
     Articulo();
-    void guardarTXT();
-    Articulo buscarTXT(const std::string& text);
-
-    // Operador de salida como función amiga
-    friend std::ostream& operator<<(std::ostream& out, const Articulo& obj);
+    friend std::istream& operator>>(std::istream& in, Articulo& art);
+    friend std::ostream& operator<<(std::ostream& out, const Articulo& art);
 };
 
 #endif // ARTICULO_H

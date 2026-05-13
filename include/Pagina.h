@@ -10,7 +10,7 @@ public:
     Pagina() = default;
     std::string titulo;
     std::string autor;
-    std::string fecha;
+    int fecha[3];
     std::string contenido;
     std::vector<std::string> tags;
     int calificacion = 0;
