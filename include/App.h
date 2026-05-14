@@ -1,7 +1,7 @@
 #ifndef APP_H
 #define APP_H
-#include "Utilidades.h"
 #include <vector>
+#include "Utilidades.h"
 #include "Pagina.h"
 #include "Articulo.h"
 #include "Manual.h"
@@ -10,11 +10,10 @@
 class App : private Utilidades
 {
 public:
-    App() = default;
+    App();
     void setEntrada(int entrada);
     int getEntrada();
     void iniciar();
-
 
 private:
     std::vector<Articulo> datos_articulo;

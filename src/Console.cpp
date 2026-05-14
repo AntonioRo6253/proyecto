@@ -1,4 +1,4 @@
-#include "Console.h"
+#include "../include/Console.h"
 #include <stdlib.h> // system()
 
 void Console::limpiarTerminal()

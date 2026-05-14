@@ -1,32 +1,23 @@
 #include "Articulo.h"
 #include <iostream>
-#include <fstream> // Librería necesaria para manejo de archivos
 #include <string>
-#include <sstream>
-#include <algorithm>
-#include "Articulo.h"
 
-Articulo::Articulo()
-{
-    //ctor
-}
-
-std::istream& operator>>(std::istream& in, Articulo& art)
+void Articulo::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
-    in >> art.titulo;
+    in >> titulo;
     std::cout << "\nAutor: ";
-    in >> art.autor;
+    in >> autor;
     std::cout << "\nFecha:\nDia: ";
-    in >> art.fecha[0];
+    in >> fecha[0];
     std::cout << "\nMes: ";
-    in >> art.fecha[1];
+    in >> fecha[1];
     std::cout << "\nAño: ";
-    in >> art.fecha[2];
+    in >> fecha[2];
     std::cout << "\nContenido: ";
-    in >> art.contenido;
+    in >> contenido;
 
-    art.tags.clear();
+    tags.clear();
 
     int numTags = 0;
     std::cout << "\n¿Cuántos tags quieres agregar? ";
@@ -37,36 +28,34 @@ std::istream& operator>>(std::istream& in, Articulo& art)
     {
         std::string tag;
         in >> tag;
-        art.tags.push_back(tag); // Agrega el tag al final del vector
+        tags.push_back(tag);
     }
 
     std::cout << "\nTus tags son:\n";
-    for (const std::string& tag : art.tags)
+    for (const std::string& tag : tags)
     {
         std::cout << "[" << tag << "] ";
     }
     std::cout << std::endl;
-    return in;
 }
 
-std::ostream& operator<<(std::ostream& out, const Articulo& art)
+void Articulo::mostrar(std::ostream& out) const
 {
     out << "\n-----------| Articulo |-----------\n"
-        << "Titulo: " << art.titulo << std::endl
-        << "Autor: " << art.autor << std::endl
-        << "Fecha: " << art.fecha[0] << '/' << art.fecha[1] << '/' << art.fecha[2] << std::endl
-        << "Contenido: " << art.contenido << std::endl
+        << "Titulo: " << titulo << std::endl
+        << "Autor: " << autor << std::endl
+        << "Fecha: " << fecha[0] << '/' << fecha[1] << '/' << fecha[2] << std::endl
+        << "Contenido: " << contenido << std::endl
         << "Tags: ";
 
-    for (size_t i = 0; i < art.tags.size(); ++i)
+    for (size_t i = 0; i < tags.size(); ++i)
     {
         if (i) out << ", ";
-        out << art.tags[i];
+        out << tags[i];
     }
 
     out << std::endl
-        << "Calificacion: " << art.calificacion << std::endl;
-    return out;
+        << "Calificacion: " << calificacion << std::endl;
 }
 
 

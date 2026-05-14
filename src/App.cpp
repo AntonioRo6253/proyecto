@@ -1,8 +1,13 @@
-#include "App.h"
+#include "../include/App.h"
 #include <iostream>
-#include <vector> // Para std::vector
-#include "Articulo.h"
+#include <vector>
 #include <string>
+#include "../include/Articulo.h"
+
+App::App()
+{
+    entrada = 0;
+}
 
 void App::setEntrada(int entrada)
 {
@@ -58,15 +63,17 @@ Seleccionar: )";
 
 void App::buscar()
 {
-
     std::string busqueda;
     bool encontrado = false;
+    int num = solicitarNum();
+
     limpiarTerminal();
     mostrarTitulo("Buscar");
+
     std::cout << "\n\nBuscar: ";
     std::cin >> busqueda;
     std::cout << "Que tipo de registro?\n1 [Articulo]\n2 [Manual]\n";
-    int num = solicitarNum();
+
     switch (num)
     {
     case 1:
@@ -78,79 +85,101 @@ void App::buscar()
         }
         for(Articulo a : datos_articulo)
         {
-            if(busqueda == a.titulo)
+            if(a == busqueda) // Sobrecarga de operador == para comparar con string
             {
                 std::cout << "Registro encontrado" << a;
                 encontrado = true;
             }
-
+            else if (a != busqueda) // Sobrecarga de operador != para comparar con string
+            {
+                continue;
+            }
         }
         break;
     }
     case 2:
     {
-        /* FIX
-           if (datos_manual.empty())
-           {
-               std::cout << "No hay Articulos.\n";
-               break;
-           }
-           for(Manual m : datos_manual)
-           {
-               if(busqueda == m.titulo)
-               {
-                   std::cout << "Registro encontrado" << m;
-                   encontrado = true;
-               }
-
-           }*/
+        if (datos_manual.empty())
+        {
+            std::cout << "No hay Manuales.\n";
+            break;
+        }
+        for(Manual m : datos_manual)
+        {
+            if(m == busqueda) // Sobrecarga de operador == para comparar con string
+            {
+                std::cout << "Registro encontrado" << m;
+                encontrado = true;
+            }
+            else if (m != busqueda) // Sobrecarga de operador != para comparar con string
+            {
+                continue;
+            }
+        }
         break;
     }
     default:
         std::cout << "Opción no válida\n";
     }
-    if (!encontrado) std::cout << "No se ha encontrado ninuna coincidencia\n";
 
+    if (!encontrado) std::cout << "No se ha encontrado ninuna coincidencia\n";
     system("pause");
 }
 void App::topList()
 {
+    Pagina* mejor = nullptr;
+    Pagina* peor = nullptr;
+
+
+    for (Articulo& a : datos_articulo)
+    {
+        if (!mejor || a > *mejor)
+            mejor = &a;
+        if (!peor || a < *peor)
+            peor = &a;
+    }
+
+    for (Manual& m : datos_manual)
+    {
+        if (!mejor || m > *mejor)
+            mejor = &m;
+        if (!peor || m < *peor)
+            peor = &m;
+    }
+
     limpiarTerminal();
     mostrarTitulo("Top List");
+
     std::cout <<
               R"(
-──────────────────────────────────────
         Seleccione una opcion
-             1. Buscar
-             2. TopList
-             3. añadir
-             4. eliminar
-             5. Mostrar todos los registros
-             6. Salir
+             1. popular
+             2. menos popular
+             3. Salir
 ──────────────────────────────────────
 Seleccionar: )";
     int num = solicitarNum();
     switch(num)
     {
     case 1:
-
+        if (mejor)
+            std::cout << "Mas alta calificacion:\n" << *mejor;
+        else
+            std::cout << "No hay registros.\n";
         break;
     case 2:
-
-        break;
-    case 3:
-
-        break;
-    case 4:
-
-        break;
-    case 5:
-
+        if (peor)
+            std::cout << "Mas baja calificacion:\n" << *peor;
+        else
+            std::cout << "No hay registros.\n";
         break;
     default:
         std::cout << "Saliendo... .\n";
         break;
     }
+
+    if (mejor && peor && *mejor != *peor) // Sobrecarga de operador != para comparar Paginas
+        std::cout << "\nHay registros distintos de mayor y peor calificacion.\n";
     system("pause");
 }
 
@@ -158,6 +187,7 @@ void App::anadir()
 {
     limpiarTerminal();
     mostrarTitulo("Añadir");
+
     std::cout << "Que quieres añadir?\n1 [Articulo]\n2 [Manual]\n";
     int num = solicitarNum();
     switch (num)
@@ -166,15 +196,18 @@ void App::anadir()
     {
         Articulo registro;
         std::cin >> registro;
+        registro += "Articulo"; // Sobrecarga de operador += para añadir el tag "Articulo"
+        ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
         datos_articulo.push_back(registro);
         break;
     }
     case 2:
     {
-        // FIX
-        // Manual registro;
-        // std::cin >> registro;
-        // datos_manual.push_back(registro);
+        Manual registro;
+        std::cin >> registro;
+        registro += "Manual"; // Sobrecarga de operador += para añadir el tag "Manual"
+        ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
+        datos_manual.push_back(registro);
         break;
     }
     default:
@@ -187,6 +220,7 @@ void App::eliminar()
 {
     limpiarTerminal();
     mostrarTitulo("Eliminar");
+
     std::cout << "Que quieres eliminar?\n1 [Articulo]\n2 [Manual]\n";
     int num = solicitarNum();
     switch (num)
@@ -201,6 +235,7 @@ void App::eliminar()
         std::cout << "\nArtículos\n";
         for (size_t i = 0; i < datos_articulo.size(); ++i)
             std::cout << (i+1) << ". " << datos_articulo[i].titulo << "\n";
+
         std::cout << "Elige uno: ";
         int seleccion = solicitarNum();
         if (seleccion >= 1 && seleccion <= datos_articulo.size())
@@ -210,8 +245,6 @@ void App::eliminar()
             std::cin >> confirm;
             if(confirm == "y")
                 datos_articulo.erase(datos_articulo.begin() + (seleccion - 1));
-            else
-                break;
         }
         else
             std::cout << "Selección inválida\n";
@@ -227,17 +260,16 @@ void App::eliminar()
         std::cout << "\nManuales\n";
         for (size_t i = 0; i < datos_manual.size(); ++i)
             std::cout << (i+1) << ". " << datos_manual[i].titulo << "\n";
+
         std::cout << "Elige uno: ";
         int seleccion = solicitarNum();
         if (seleccion >= 1 && seleccion <= datos_manual.size())
         {
-            std::cout << "Seguro que quieres eliminar " << datos_articulo[seleccion - 1].titulo << " [y/n]: ";
+            std::cout << "Seguro que quieres eliminar " << datos_manual[seleccion - 1].titulo << " [y/n]: ";
             std::string confirm;
             std::cin >> confirm;
             if(confirm == "y")
                 datos_manual.erase(datos_manual.begin() + (seleccion - 1));
-            else
-                break;
         }
         else
             std::cout << "Selección inválida\n";
@@ -252,19 +284,20 @@ void App::mostrarTodoRegistro()
 {
     limpiarTerminal();
     mostrarTitulo("Articulos");
+
     if (datos_articulo.empty())
         std::cout << "No hay Articulos.\n\n";
-
     for(size_t i = 0; i < datos_articulo.size(); i++)
     {
         std::cout << i + 1 << ". \n" << datos_articulo[i];
     }
+
     mostrarTitulo("Manuales");
     if (datos_manual.empty())
         std::cout << "No hay manuales.\n\n";
     for(size_t i = 0; i<datos_manual.size(); i++)
     {
-        //std::cout << i + 1 << ". \n" << datos_manual[i];
+        std::cout << i + 1 << ". \n" << datos_manual[i];
     }
     system("pause");
 }

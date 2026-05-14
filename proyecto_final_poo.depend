@@ -23,54 +23,47 @@
 	<stdexcept>
 	<windows.h>
 
-1778644348 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
-	"Utilidades.h"
+1778779499 source:c:\users\franky\proyects\proyecto_final_poo\src\utilidades.cpp
+	"../include/Utilidades.h"
+	<iostream>
+	<string>
 	<cctype>
 	<stdlib.h>
-	<string>
-	<iostream>
 	<stdexcept>
 
-1778742695 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+1778773970 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+	<vector>
 	"Utilidades.h"
-	<vector>
 	"Pagina.h"
 	"Articulo.h"
 	"Manual.h"
 
-1778743164 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
-	"App.h"
+1778779345 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
+	"../include/App.h"
 	<iostream>
 	<vector>
-	"Articulo.h"
 	<string>
+	"../include/Articulo.h"
 
-1778655400 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
+1778779499 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
+	<iostream>
 	"Pagina.h"
+
+1778779499 c:\users\franky\proyects\proyecto_final_poo\include\pagina.h
+	<iostream>
 	<string>
 	<vector>
-	<iostream>
 
-1778653839 c:\users\franky\proyects\proyecto_final_poo\include\pagina.h
-	<string>
-	<vector>
-
-1778655400 source:c:\users\franky\proyects\proyecto_final_poo\src\articulo.cpp
+1778779499 source:c:\users\franky\proyects\proyecto_final_poo\src\articulo.cpp
 	"Articulo.h"
 	<iostream>
-	<fstream>
 	<string>
-	<sstream>
-	<algorithm>
-	"Articulo.h"
 
-1778655576 source:c:\users\franky\proyects\proyecto_final_poo\src\manual.cpp
-	"Manual.h"
+1778779499 source:c:\users\franky\proyects\proyecto_final_poo\src\manual.cpp
+	"../include/Manual.h"
 	<iostream>
-	<fstream>
-	<sstream>
 
-1778655589 c:\users\franky\proyects\proyecto_final_poo\include\manual.h
+1778779499 c:\users\franky\proyects\proyecto_final_poo\include\manual.h
 	"Pagina.h"
 	<vector>
 
@@ -83,6 +76,6 @@
 	<vector>
 	"Articulo.h"
 
-1778529116 source:c:\users\franky\proyects\proyecto_final_poo\src\pagina.cpp
+1778779499 source:c:\users\franky\proyects\proyecto_final_poo\src\pagina.cpp
 	"Pagina.h"
 
