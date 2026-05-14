@@ -1,8 +1,8 @@
-#include "../include/App.h"
+#include "App.h"
 #include <iostream>
 #include <vector>
 #include <string>
-#include "../include/Articulo.h"
+#include "Articulo.h"
 
 App::App()
 {
@@ -65,14 +65,14 @@ void App::buscar()
 {
     std::string busqueda;
     bool encontrado = false;
-    int num = solicitarNum();
 
     limpiarTerminal();
     mostrarTitulo("Buscar");
 
     std::cout << "\n\nBuscar: ";
-    std::cin >> busqueda;
+    std::getline(std::cin >> std::ws, busqueda);
     std::cout << "Que tipo de registro?\n1 [Articulo]\n2 [Manual]\n";
+    int num = solicitarNum();
 
     switch (num)
     {
@@ -187,6 +187,7 @@ void App::anadir()
 {
     limpiarTerminal();
     mostrarTitulo("Añadir");
+    bool agregado = false;
 
     std::cout << "Que quieres añadir?\n1 [Articulo]\n2 [Manual]\n";
     int num = solicitarNum();
@@ -199,6 +200,7 @@ void App::anadir()
         registro += "Articulo"; // Sobrecarga de operador += para añadir el tag "Articulo"
         ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
         datos_articulo.push_back(registro);
+        agregado = true;
         break;
     }
     case 2:
@@ -208,12 +210,14 @@ void App::anadir()
         registro += "Manual"; // Sobrecarga de operador += para añadir el tag "Manual"
         ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
         datos_manual.push_back(registro);
+        agregado = true;
         break;
     }
     default:
         std::cout << "Opción no válida\n";
     }
-    std::cout << "\nElemento añadido exitosamente!\n";
+    if (agregado)
+        std::cout << "\nElemento añadido exitosamente!\n";
     system("pause");
 }
 void App::eliminar()
@@ -238,7 +242,7 @@ void App::eliminar()
 
         std::cout << "Elige uno: ";
         int seleccion = solicitarNum();
-        if (seleccion >= 1 && seleccion <= datos_articulo.size())
+        if (seleccion >= 1 && static_cast<size_t>(seleccion) <= datos_articulo.size())
         {
             std::cout << "Seguro que quieres eliminar " << datos_articulo[seleccion - 1].titulo << " [y/n]: ";
             std::string confirm;
@@ -263,7 +267,7 @@ void App::eliminar()
 
         std::cout << "Elige uno: ";
         int seleccion = solicitarNum();
-        if (seleccion >= 1 && seleccion <= datos_manual.size())
+        if (seleccion >= 1 && static_cast<size_t>(seleccion) <= datos_manual.size())
         {
             std::cout << "Seguro que quieres eliminar " << datos_manual[seleccion - 1].titulo << " [y/n]: ";
             std::string confirm;

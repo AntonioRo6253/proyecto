@@ -1,12 +1,12 @@
-#include "../include/Manual.h"
+#include "Manual.h"
 #include <iostream>
 
 void Manual::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
-    in >> titulo;
+    std::getline(in >> std::ws, titulo);
     std::cout << "\nAutor: ";
-    in >> autor;
+    std::getline(in >> std::ws, autor);
     std::cout << "\nFecha:\nDia: ";
     in >> fecha[0];
     std::cout << "\nMes: ";
@@ -14,7 +14,7 @@ void Manual::guardar(std::istream& in)
     std::cout << "\nAño: ";
     in >> fecha[2];
     std::cout << "\nContenido: ";
-    in >> contenido;
+    std::getline(in >> std::ws, contenido);
 
     pasos.clear();
     int numPasos = 0;
@@ -29,7 +29,7 @@ void Manual::guardar(std::istream& in)
     }
 
     std::cout << "\nRequisitos: ";
-    in >> requisitos;
+    std::getline(in >> std::ws, requisitos);
 }
 
 void Manual::mostrar(std::ostream& out) const

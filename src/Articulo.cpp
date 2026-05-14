@@ -5,9 +5,9 @@
 void Articulo::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
-    in >> titulo;
+    std::getline(in >> std::ws, titulo);
     std::cout << "\nAutor: ";
-    in >> autor;
+    std::getline(in >> std::ws, autor);
     std::cout << "\nFecha:\nDia: ";
     in >> fecha[0];
     std::cout << "\nMes: ";
@@ -15,7 +15,7 @@ void Articulo::guardar(std::istream& in)
     std::cout << "\nAño: ";
     in >> fecha[2];
     std::cout << "\nContenido: ";
-    in >> contenido;
+    std::getline(in >> std::ws, contenido);
 
     tags.clear();
 
