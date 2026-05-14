@@ -5,7 +5,7 @@ Pagina::Pagina()
     titulo = " ";
     autor = " ";
     fecha[0] = 0;
-    fecha[3] = 0;
+    fecha[1] = 0;
     fecha[2] = 0;
     contenido = " ";
     calificacion = 0;
