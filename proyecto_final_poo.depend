@@ -31,18 +31,19 @@
 	<iostream>
 	<stdexcept>
 
-1778655161 c:\users\franky\proyects\proyecto_final_poo\include\app.h
+1778742695 c:\users\franky\proyects\proyecto_final_poo\include\app.h
 	"Utilidades.h"
 	<vector>
 	"Pagina.h"
 	"Articulo.h"
 	"Manual.h"
 
-1778655433 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
+1778743164 source:c:\users\franky\proyects\proyecto_final_poo\src\app.cpp
 	"App.h"
 	<iostream>
 	<vector>
 	"Articulo.h"
+	<string>
 
 1778655400 c:\users\franky\proyects\proyecto_final_poo\include\articulo.h
 	"Pagina.h"

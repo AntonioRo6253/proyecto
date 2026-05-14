@@ -24,6 +24,7 @@ private:
     void topList();
     void anadir();
     void eliminar();
+    void mostrarTodoRegistro();
 };
 
 #endif // MENU_H
