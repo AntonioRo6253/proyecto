@@ -52,7 +52,8 @@ int Utilidades::solicitarNum()
             throw std::runtime_error("Fallo al obtener la seleccion,");
         return num;
     }
-    catch (const std::exception& err){
+    catch (const std::exception& err)
+    {
 #ifdef _WIN32
         std::string tmp;
         std::cin.clear();     // Limpiar el estado de error

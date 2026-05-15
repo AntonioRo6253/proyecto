@@ -10,30 +10,47 @@ Articulo::Articulo()
 
 void Articulo::guardar(std::istream& in)
 {
-    std::cout << "\nTitulo: ";
-    /* 
-    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea 
+    std::cout << "\nTitulo [texto]: ";
+    /*
+    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea
     evita que si escribimos un titulo con espacios, solo se lea la primera palabra y el resto se quede en el buffer
     */
     std::getline(in >> std::ws, titulo);
-    std::cout << "\nAutor: ";
+    std::cout << "\nAutor [texto]: ";
     std::getline(in >> std::ws, autor);
-    std::cout << "\nFecha:\nDia: ";
-    in >> fecha[0];
-    std::cout << "\nMes: ";
-    in >> fecha[1];
-    std::cout << "\nAño: ";
-    in >> fecha[2];
-    std::cout << "\nContenido: ";
+    int valor;
+    // Fecha: dia
+    do {
+        std::cout << "\nDia [12]: ";
+        valor = solicitarNum();
+    } while (valor == -1);
+    fecha[0] = valor;
+    // mes
+    do {
+        std::cout << "\nMes [02]: ";
+        valor = solicitarNum();
+    } while (valor == -1);
+    fecha[1] = valor;
+    // año
+    do {
+        std::cout << "\nAño [2026]: ";
+        valor = solicitarNum();
+    } while (valor == -1);
+    fecha[2] = valor;
+    std::cout << "\nContenido [texto]: ";
     std::getline(in >> std::ws, contenido);
 
     tags.clear();
 
     int numTags = 0;
-    std::cout << "\n¿Cuantos tags quieres agregar? ";
-    in >> numTags;
+    do
+    {
+        std::cout << "\n¿Cuantos tags quieres agregar? [numero]: ";
+        numTags = solicitarNum();
+    }
+    while (numTags == -1);
 
-    std::cout << "\nIntroduce los tags (uno por uno, presiona Enter tras cada uno):\n";
+    std::cout << "\nIntroduce un tag y presiona enter [texto]:\n";
     for (int i = 0; i < numTags; ++i)
     {
         std::string tag;
@@ -48,13 +65,19 @@ void Articulo::guardar(std::istream& in)
     }
     std::cout << std::endl;
 
-    std::cout << "\nResumen: ";
+    std::cout << "\nResumen [texto]: ";
     std::getline(in >> std::ws, resumen);
 
-    std::cout << "\nVisitas: ";
-    in >> visitas;
-    std::cout << "\nCalificacion: ";
-    in >> calificacion;
+    do {
+        std::cout << "\nVisitas [numero]: ";
+        valor = solicitarNum();
+    } while (valor == -1);
+    visitas = valor;
+    do {
+        std::cout << "\nCalificacion [0-10]: ";
+        valor = solicitarNum();
+    } while (valor == -1);
+    calificacion = valor;
 }
 
 void Articulo::mostrar(std::ostream& out) const

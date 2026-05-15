@@ -1,4 +1,5 @@
 #include "Pagina.h"
+#include "Utilidades.h"
 
 Pagina::Pagina()
 {
@@ -92,7 +93,33 @@ void Pagina::guardar(std::istream& in)
     std::cout << "\n-----------| Advertencia estas usando class Pagina inadecuadamente |-----------\n";
     in >> titulo;
     in >> autor;
-    in >> fecha[0] >> fecha[1] >> fecha[2];
+
+    int valor;
+    // Leer dia
+    do
+    {
+        std::cout << "\nDia: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[0] = valor;
+    // Leer mes
+    do
+    {
+        std::cout << "\nMes: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[1] = valor;
+    // Leer año
+    do
+    {
+        std::cout << "\nAño: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[2] = valor;
+
     in >> contenido;
 }
 

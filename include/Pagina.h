@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Utilidades.h"
 
-
-class Pagina
+class Pagina : public Utilidades
 {
 public:
     Pagina();

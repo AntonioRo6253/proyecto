@@ -1,4 +1,5 @@
 #include "Manual.h"
+#include "Utilidades.h"
 #include <iostream>
 #include <string>
 
@@ -10,28 +11,48 @@ Manual::Manual()
 
 void Manual::guardar(std::istream& in)
 {
-    std::cout << "\nTitulo: ";
-    /* 
-    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea 
+    std::cout << "\nTitulo [texto]: ";
+    /*
+    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea
     evita que si escribimos un titulo con espacios, solo se lea la primera palabra y el resto se quede en el buffer
     */
     std::getline(in >> std::ws, titulo);
-    std::cout << "\nAutor: ";
+    std::cout << "\nAutor [texto]: ";
     std::getline(in >> std::ws, autor);
-    std::cout << "\nFecha:\nDia: ";
-    in >> fecha[0];
-    std::cout << "\nMes: ";
-    in >> fecha[1];
-    std::cout << "\nAño: ";
-    in >> fecha[2];
-    std::cout << "\nContenido: ";
+    int valor;
+    do
+    {
+        std::cout << "\nDia [12]: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[0] = valor;
+    do
+    {
+        std::cout << "\nMes [02]: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[1] = valor;
+    do
+    {
+        std::cout << "\nAño [2026]: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    fecha[2] = valor;
+    std::cout << "\nContenido [texto]: ";
     std::getline(in >> std::ws, contenido);
 
     pasos.clear();
     int numPasos = 0;
-    std::cout << "\n¿Cuantos pasos quieres agregar? ";
-    in >> numPasos;
-    std::cout << "\nIntroduce los pasos (uno por uno):\n";
+    do
+    {
+        std::cout << "\n¿Cuantos pasos quieres agregar? [numero]: ";
+        numPasos = solicitarNum();
+    }
+    while (numPasos == -1);
+    std::cout << "\nIntroduce un paso y presiona enter [texto]:\n";
     for (int i = 0; i < numPasos; ++i)
     {
         std::string paso;
@@ -39,16 +60,43 @@ void Manual::guardar(std::istream& in)
         pasos.push_back(paso);
     }
 
-    std::cout << "\nRequisitos: ";
+    tags.clear();
+
+    int numTags = 0;
+    do
+    {
+        std::cout << "\n¿Cuantos tags quieres agregar? [numero]: ";
+        numTags = solicitarNum();
+    }
+    while (numTags == -1);
+    std::cout << "\nIntroduce un tag y presiona enter [texto]:\n";
+    for (int i = 0; i < numTags; ++i)
+    {
+        std::string tag;
+        in >> tag;
+        tags.push_back(tag);
+    }
+
+    std::cout << "\nRequisitos [texto]: ";
     std::getline(in >> std::ws, requisitos);
 
-    std::cout << "\nDificultad (numero): ";
-    in >> dificultad;
+    do
+    {
+        std::cout << "\nDificultad [numero]: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    dificultad = valor;
 
-    std::cout << "\nHerramienta recomendada: ";
+    std::cout << "\nHerramienta recomendada [texto]: ";
     std::getline(in >> std::ws, herramienta);
-    std::cout << "\nCalificacion: ";
-    in >> calificacion;
+    do
+    {
+        std::cout << "\nCalificacion [0-10]: ";
+        valor = solicitarNum();
+    }
+    while (valor == -1);
+    calificacion = valor;
 }
 
 void Manual::mostrar(std::ostream& out) const
@@ -65,6 +113,14 @@ void Manual::mostrar(std::ostream& out) const
     {
         if (i) out << ", ";
         out << pasos[i];
+    }
+
+    out << "\nTags: ";
+
+    for (size_t i = 0; i < tags.size(); ++i)
+    {
+        if (i) out << ", ";
+        out << tags[i];
     }
 
     out << std::endl
