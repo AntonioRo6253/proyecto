@@ -11,39 +11,39 @@ Pagina::Pagina()
     calificacion = 0;
 }
 
-bool Pagina::operator==(const std::string& busqueda) const
+bool Pagina::operator==(std::string busqueda)
 {
     return titulo == busqueda;
 }
 
-bool Pagina::operator!=(const std::string& busqueda) const
+bool Pagina::operator!=(std::string busqueda)
 {
     return !(*this == busqueda);
 }
 
-bool Pagina::operator==(const Pagina& otra) const
+bool Pagina::operator==(Pagina otra)
 {
     return titulo == otra.titulo && calificacion == otra.calificacion;
 }
 
-bool Pagina::operator!=(const Pagina& otra) const
+bool Pagina::operator!=(Pagina otra)
 {
     return !(*this == otra);
 }
 
-bool Pagina::operator<(const Pagina& otra) const
+bool Pagina::operator<(Pagina otra)
 {
     if (calificacion != otra.calificacion)
         return calificacion < otra.calificacion;
     return titulo < otra.titulo;
 }
 
-bool Pagina::operator>(const Pagina& otra) const
+bool Pagina::operator>(Pagina otra)
 {
     return otra < *this;
 }
 
-Pagina& Pagina::operator+=(const std::string& tag)
+Pagina& Pagina::operator+=(std::string tag)
 {
     if (!tag.empty())
         tags.push_back(tag);

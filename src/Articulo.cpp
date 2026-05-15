@@ -38,7 +38,7 @@ void Articulo::guardar(std::istream& in)
     }
 
     std::cout << "\nTus tags son:\n";
-    for (const std::string& tag : tags)
+    for (std::string tag : tags)
     {
         std::cout << "[" << tag << "] ";
     }

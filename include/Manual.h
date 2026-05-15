@@ -16,7 +16,7 @@ public:
     std::string getHerramienta();
     void setHerramienta(std::string h);
     std::vector<std::string> getPasos();
-    void setPasos(const std::vector<std::string> p);
+    void setPasos(std::vector<std::string> p);
     std::string getRequisitos();
     void setRequisitos(std::string r);
 private:
