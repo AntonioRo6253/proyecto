@@ -31,9 +31,9 @@ void App::iniciar()
         Seleccione una opcion
              1. Buscar
              2. TopList
-             3. añadir
-             4. eliminar
-             5. Mostrar todos los registros
+             3. Añadir
+             4. Eliminar
+             5. Todos los registros
              6. Salir
 ──────────────────────────────────────
 Seleccionar: )";
@@ -119,7 +119,7 @@ void App::buscar()
         break;
     }
     default:
-        std::cout << "Opción no válida\n";
+        std::cout << "Opcion no valida\n";
     }
 
     if (!encontrado) std::cout << "No se ha encontrado ninuna coincidencia\n";
@@ -214,7 +214,7 @@ void App::anadir()
         break;
     }
     default:
-        std::cout << "Opción no válida\n";
+        std::cout << "Opción no valida\n";
     }
     if (agregado)
         std::cout << "\nElemento añadido exitosamente!\n";
@@ -233,16 +233,16 @@ void App::eliminar()
     {
         if (datos_articulo.empty())
         {
-            std::cout << "No hay artículos.\n";
+            std::cout << "No hay articulos.\n";
             break;
         }
-        std::cout << "\nArtículos\n";
+        std::cout << "\nArticulos\n";
         for (size_t i = 0; i < datos_articulo.size(); ++i)
             std::cout << (i+1) << ". " << datos_articulo[i].titulo << "\n";
 
         std::cout << "Elige uno: ";
         int seleccion = solicitarNum();
-        if (seleccion >= 1 && static_cast<size_t>(seleccion) <= datos_articulo.size())
+        if (seleccion >= 1 && seleccion <= datos_articulo.size())
         {
             std::cout << "Seguro que quieres eliminar " << datos_articulo[seleccion - 1].titulo << " [y/n]: ";
             std::string confirm;
@@ -251,7 +251,7 @@ void App::eliminar()
                 datos_articulo.erase(datos_articulo.begin() + (seleccion - 1));
         }
         else
-            std::cout << "Selección inválida\n";
+            std::cout << "Opcion no valida\n";
         break;
     }
     case 2:
@@ -276,32 +276,36 @@ void App::eliminar()
                 datos_manual.erase(datos_manual.begin() + (seleccion - 1));
         }
         else
-            std::cout << "Selección inválida\n";
+            std::cout << "Opcion no valida\n";
         break;
     }
     default:
-        std::cout << "Opción no válida\n";
+        std::cout << "Opcion no valida\n";
     }
     system("pause");
 }
 void App::mostrarTodoRegistro()
 {
     limpiarTerminal();
-    mostrarTitulo("Articulos");
+    mostrarTitulo("Todos los registros");
 
-    if (datos_articulo.empty())
-        std::cout << "No hay Articulos.\n\n";
-    for(size_t i = 0; i < datos_articulo.size(); i++)
+    std::vector<Pagina*> combinado;
+    combinado.reserve(datos_articulo.size() + datos_manual.size()); // Reservar espacio para evitar reallocations
+
+    for (Articulo& a : datos_articulo) combinado.push_back(&a); // Pasar por referencia para tener ptr**
+    for (Manual& m : datos_manual)   combinado.push_back(&m);
+
+    if (combinado.empty())
     {
-        std::cout << i + 1 << ". \n" << datos_articulo[i];
+        std::cout << "No hay registros.\n\n";
+        system("pause");
+        return;
     }
 
-    mostrarTitulo("Manuales");
-    if (datos_manual.empty())
-        std::cout << "No hay manuales.\n\n";
-    for(size_t i = 0; i<datos_manual.size(); i++)
+    for (size_t i = 0; i < combinado.size(); i++)
     {
-        std::cout << i + 1 << ". \n" << datos_manual[i];
+        std::cout << i + 1 << ". \n" << *combinado[i];
     }
+
     system("pause");
 }

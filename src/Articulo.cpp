@@ -2,10 +2,16 @@
 #include <iostream>
 #include <string>
 
+Articulo::Articulo()
+{
+    visitas = 0;
+    resumen = " ";
+}
+
 void Articulo::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
-    std::getline(in >> std::ws, titulo);
+    std::getline(in >> std::ws, titulo); // El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea
     std::cout << "\nAutor: ";
     std::getline(in >> std::ws, autor);
     std::cout << "\nFecha:\nDia: ";
@@ -20,7 +26,7 @@ void Articulo::guardar(std::istream& in)
     tags.clear();
 
     int numTags = 0;
-    std::cout << "\n¿Cuántos tags quieres agregar? ";
+    std::cout << "\n¿Cuantos tags quieres agregar? ";
     in >> numTags;
 
     std::cout << "\nIntroduce los tags (uno por uno, presiona Enter tras cada uno):\n";
@@ -37,6 +43,12 @@ void Articulo::guardar(std::istream& in)
         std::cout << "[" << tag << "] ";
     }
     std::cout << std::endl;
+
+    std::cout << "\nResumen: ";
+    std::getline(in >> std::ws, resumen);
+
+    std::cout << "\nVisitas: ";
+    in >> visitas;
 }
 
 void Articulo::mostrar(std::ostream& out) const
@@ -55,7 +67,26 @@ void Articulo::mostrar(std::ostream& out) const
     }
 
     out << std::endl
+        << "\nResumen: " << resumen << std::endl
+        << "Visitas: " << visitas << std::endl
         << "Calificacion: " << calificacion << std::endl;
+}
+
+int Articulo::getVisitas()
+{
+    return visitas;
+}
+void Articulo::setVisitas(int v)
+{
+    visitas = v;
+}
+std::string Articulo::getResumen()
+{
+    return resumen;
+}
+void Articulo::setResumen(std::string r)
+{
+    resumen = r;
 }
 
 

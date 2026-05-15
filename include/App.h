@@ -2,7 +2,6 @@
 #define APP_H
 #include <vector>
 #include "Utilidades.h"
-#include "Pagina.h"
 #include "Articulo.h"
 #include "Manual.h"
 
