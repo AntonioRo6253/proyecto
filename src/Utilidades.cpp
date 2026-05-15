@@ -4,6 +4,7 @@
 #include <cctype> // isalpha()
 #include <stdlib.h> // system()
 #include <stdexcept> // exception, invalid_argument, out_of_range
+#include <limits> // numeric_limits
 
 
 bool Utilidades::isTexto(std::string texto)
@@ -27,7 +28,11 @@ void Utilidades::pausarTerminal()
 #ifdef _WIN32
     system("pause"); // Windows
 #else
-    system("read -n1 -r -p 'Presione una tecla para continuar...'"); // Linux y MacOs
+    std::cout << "Presione ENTER para continuar...";
+    std::cin.clear(); // limpiar el estado de error
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // eliminar resto de la línea anterior
+    std::string tmp;
+    std::getline(std::cin, tmp); // espera el ENTER del usuario
 #endif
 }
 
@@ -53,7 +58,7 @@ int Utilidades::solicitarNum()
         std::cin.clear();     // Limpiar el estado de error
         std::getline(std::cin, basura); // descartar todo hasta el '\n'
         std::cerr << std::endl << "Error inesperado: " << err.what() << basura  << " ] No es un numero valido se esperaba uno de estos numeros [1, 2, 3, 4]" << std::endl;
-        system("pause");
+        pausarTerminal();
         return -1;
     }
 }
