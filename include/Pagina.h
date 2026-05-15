@@ -24,7 +24,7 @@ public:
     bool operator<(Pagina otra);
     bool operator>(Pagina otra);
     Pagina& operator+=(std::string tag);
-    Pagina& operator++();
+    Pagina& operator+=(int value);
     virtual void mostrar(std::ostream& out) const;
     virtual void guardar(std::istream& in);
 };

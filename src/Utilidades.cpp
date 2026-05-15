@@ -22,6 +22,15 @@ void Utilidades::limpiarTerminal()
 #endif
 }
 
+void Utilidades::pausarTerminal()
+{
+#ifdef _WIN32
+    system("pause"); // Windows
+#else
+    system("read -n1 -r -p 'Presione una tecla para continuar...'"); // Linux y MacOs
+#endif
+}
+
 void Utilidades::mostrarTitulo(std::string texto)
 {
     int margen = 18;

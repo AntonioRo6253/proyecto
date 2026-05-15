@@ -50,9 +50,9 @@ Pagina& Pagina::operator+=(std::string tag)
     return *this;
 }
 
-Pagina& Pagina::operator++()
+Pagina& Pagina::operator+=(int value)
 {
-    ++calificacion;
+    calificacion = value;
     return *this;
 }
 

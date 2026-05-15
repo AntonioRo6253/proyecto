@@ -11,6 +11,10 @@ Manual::Manual()
 void Manual::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
+    /* 
+    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea 
+    evita que si escribimos un titulo con espacios, solo se lea la primera palabra y el resto se quede en el buffer
+    */
     std::getline(in >> std::ws, titulo);
     std::cout << "\nAutor: ";
     std::getline(in >> std::ws, autor);
@@ -31,7 +35,7 @@ void Manual::guardar(std::istream& in)
     for (int i = 0; i < numPasos; ++i)
     {
         std::string paso;
-        in >> paso;
+        std::getline(in >> std::ws, paso);
         pasos.push_back(paso);
     }
 
@@ -43,6 +47,8 @@ void Manual::guardar(std::istream& in)
 
     std::cout << "\nHerramienta recomendada: ";
     std::getline(in >> std::ws, herramienta);
+    std::cout << "\nCalificacion: ";
+    in >> calificacion;
 }
 
 void Manual::mostrar(std::ostream& out) const

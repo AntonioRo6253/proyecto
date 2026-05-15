@@ -11,7 +11,11 @@ Articulo::Articulo()
 void Articulo::guardar(std::istream& in)
 {
     std::cout << "\nTitulo: ";
-    std::getline(in >> std::ws, titulo); // El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea
+    /* 
+    El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea 
+    evita que si escribimos un titulo con espacios, solo se lea la primera palabra y el resto se quede en el buffer
+    */
+    std::getline(in >> std::ws, titulo);
     std::cout << "\nAutor: ";
     std::getline(in >> std::ws, autor);
     std::cout << "\nFecha:\nDia: ";
@@ -49,6 +53,8 @@ void Articulo::guardar(std::istream& in)
 
     std::cout << "\nVisitas: ";
     in >> visitas;
+    std::cout << "\nCalificacion: ";
+    in >> calificacion;
 }
 
 void Articulo::mostrar(std::ostream& out) const

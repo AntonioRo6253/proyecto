@@ -8,6 +8,7 @@ class Utilidades
 protected:
     bool isTexto(std::string texto);
     void limpiarTerminal();
+    void pausarTerminal();
     void mostrarTitulo(std::string texto);
     int solicitarNum();
 };

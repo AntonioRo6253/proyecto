@@ -123,7 +123,7 @@ void App::buscar()
     }
 
     if (!encontrado) std::cout << "No se ha encontrado ninuna coincidencia\n";
-    system("pause");
+    pausarTerminal();
 }
 void App::topList()
 {
@@ -180,7 +180,7 @@ Seleccionar: )";
 
     if (mejor && peor && *mejor != *peor) // Sobrecarga de operador != para comparar Paginas
         std::cout << "\nHay registros distintos de mayor y peor calificacion.\n";
-    system("pause");
+    pausarTerminal();
 }
 
 void App::anadir()
@@ -198,7 +198,6 @@ void App::anadir()
         Articulo registro;
         std::cin >> registro;
         registro += "Articulo"; // Sobrecarga de operador += para añadir el tag "Articulo"
-        ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
         datos_articulo.push_back(registro);
         agregado = true;
         break;
@@ -208,7 +207,6 @@ void App::anadir()
         Manual registro;
         std::cin >> registro;
         registro += "Manual"; // Sobrecarga de operador += para añadir el tag "Manual"
-        ++registro; // Sobrecarga de operador ++ para incrementar la calificacion
         datos_manual.push_back(registro);
         agregado = true;
         break;
@@ -218,7 +216,7 @@ void App::anadir()
     }
     if (agregado)
         std::cout << "\nElemento añadido exitosamente!\n";
-    system("pause");
+    pausarTerminal();
 }
 void App::eliminar()
 {
@@ -282,7 +280,7 @@ void App::eliminar()
     default:
         std::cout << "Opcion no valida\n";
     }
-    system("pause");
+    pausarTerminal();
 }
 void App::mostrarTodoRegistro()
 {
@@ -299,7 +297,7 @@ void App::mostrarTodoRegistro()
     if (combinado.empty())
     {
         std::cout << "No hay registros.\n\n";
-        system("pause");
+        pausarTerminal();
         return;
     }
 
@@ -308,5 +306,5 @@ void App::mostrarTodoRegistro()
         std::cout << i + 1 << ". \n" << *registros[i];
     }
 
-    system("pause");
+    pausarTerminal();
 }
