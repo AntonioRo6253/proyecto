@@ -49,15 +49,12 @@ int Utilidades::solicitarNum()
     {
         int num;
         if(!(std::cin >> num))
-            throw std::runtime_error("Fallo al obtener la seleccion, [ ");
+            throw std::runtime_error("Fallo al obtener la seleccion,");
         return num;
     }
     catch (const std::exception& err)
     {
-        std::string basura;
-        std::cin.clear();     // Limpiar el estado de error
-        std::getline(std::cin, basura); // descartar todo hasta el '\n'
-        std::cerr << std::endl << "Error inesperado: " << err.what() << basura  << " ] No es un numero valido se esperaba uno de estos numeros [1, 2, 3, 4]" << std::endl;
+        std::cerr << std::endl << "Error inesperado: " << err.what() << " No es un numero valido se esperaba uno de estos numeros [1, 2, 3, 4]" << std::endl;
         pausarTerminal();
         return -1;
     }
