@@ -292,8 +292,9 @@ void App::mostrarTodoRegistro()
     std::vector<Pagina*> combinado;
     combinado.reserve(datos_articulo.size() + datos_manual.size()); // Reservar espacio para evitar reallocations
 
-    for (Articulo& a : datos_articulo) combinado.push_back(&a); // Pasar por referencia para tener ptr**
+    for (Articulo& a : datos_articulo) combinado.push_back(&a);
     for (Manual& m : datos_manual)   combinado.push_back(&m);
+    Pagina** registros = combinado.data();  // crear ptr** para tener apuntador de punteros a clase 
 
     if (combinado.empty())
     {
@@ -304,7 +305,7 @@ void App::mostrarTodoRegistro()
 
     for (size_t i = 0; i < combinado.size(); i++)
     {
-        std::cout << i + 1 << ". \n" << *combinado[i];
+        std::cout << i + 1 << ". \n" << *registros[i];
     }
 
     system("pause");
