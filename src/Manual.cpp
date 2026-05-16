@@ -11,48 +11,48 @@ Manual::Manual()
 
 void Manual::guardar(std::istream& in)
 {
-    std::cout << "\nTitulo [texto]: ";
+    std::cout << "\n\033[36mTitulo [texto]: \033[0m";
     /*
     El std::ws asegura que se ignoren los espacios en blanco antes de leer la línea
     evita que si escribimos un titulo con espacios, solo se lea la primera palabra y el resto se quede en el buffer
     */
     std::getline(in >> std::ws, titulo);
-    std::cout << "\nAutor [texto]: ";
+    std::cout << "\n\033[36mAutor [texto]: \033[0m";
     std::getline(in >> std::ws, autor);
     int valor;
     do
     {
-        std::cout << "\nDia [12]: ";
+        std::cout << "\n\033[36mDia [12]: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
     fecha[0] = valor;
     do
     {
-        std::cout << "\nMes [02]: ";
+        std::cout << "\n\033[36mMes [02]: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
     fecha[1] = valor;
     do
     {
-        std::cout << "\nAño [2026]: ";
+        std::cout << "\n\033[36mAño [2026]: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
     fecha[2] = valor;
-    std::cout << "\nContenido [texto]: ";
+    std::cout << "\n\033[36mContenido [texto]: \033[0m";
     std::getline(in >> std::ws, contenido);
 
     pasos.clear();
     int numPasos = 0;
     do
     {
-        std::cout << "\n¿Cuantos pasos quieres agregar? [numero]: ";
+        std::cout << "\n\033[36m¿Cuantos pasos quieres agregar? [numero]: \033[0m";
         numPasos = solicitarNum();
     }
     while (numPasos == -1);
-    std::cout << "\nIntroduce un paso y presiona enter [texto]:\n";
+    std::cout << "\n\033[36mIntroduce un paso y presiona enter [texto]:\033[0m\n";
     for (int i = 0; i < numPasos; ++i)
     {
         std::string paso;
@@ -65,11 +65,11 @@ void Manual::guardar(std::istream& in)
     int numTags = 0;
     do
     {
-        std::cout << "\n¿Cuantos tags quieres agregar? [numero]: ";
+        std::cout << "\n\033[36m¿Cuantos tags quieres agregar? [numero]: \033[0m";
         numTags = solicitarNum();
     }
     while (numTags == -1);
-    std::cout << "\nIntroduce un tag y presiona enter [texto]:\n";
+    std::cout << "\n\033[36mIntroduce un tag y presiona enter [texto]:\033[0m\n";
     for (int i = 0; i < numTags; ++i)
     {
         std::string tag;
@@ -77,22 +77,22 @@ void Manual::guardar(std::istream& in)
         tags.push_back(tag);
     }
 
-    std::cout << "\nRequisitos [texto]: ";
+    std::cout << "\n\033[36mRequisitos [texto]: \033[0m";
     std::getline(in >> std::ws, requisitos);
 
     do
     {
-        std::cout << "\nDificultad [numero]: ";
+        std::cout << "\n\033[36mDificultad [numero]: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
     dificultad = valor;
 
-    std::cout << "\nHerramienta recomendada [texto]: ";
+    std::cout << "\n\033[36mHerramienta recomendada [texto]: \033[0m";
     std::getline(in >> std::ws, herramienta);
     do
     {
-        std::cout << "\nCalificacion [0-10]: ";
+        std::cout << "\n\033[36mCalificacion [0-10]: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
@@ -101,13 +101,13 @@ void Manual::guardar(std::istream& in)
 
 void Manual::mostrar(std::ostream& out) const
 {
-    out << "\n-----------| Manual |-----------\n"
-        << "Titulo: " << titulo << std::endl
-        << "Autor: " << autor << std::endl
-        << "Fecha: " << fecha[0] << '/' << fecha[1] << '/' << fecha[2] << std::endl
-        << "Contenido: " << contenido << std::endl
-        << "Requisitos: " << requisitos << std::endl
-        << "Pasos: ";
+    out << "\033[36m\n-----------| Manual |-----------\033[0m\n"
+        << "\033[36mTitulo:\033[0m " << titulo << std::endl
+        << "\033[36mAutor:\033[0m " << autor << std::endl
+        << "\033[36mFecha:\033[0m " << fecha[0] << '/' << fecha[1] << '/' << fecha[2] << std::endl
+        << "\033[36mContenido:\033[0m " << contenido << std::endl
+        << "\033[36mRequisitos:\033[0m " << requisitos << std::endl
+        << "\033[36mPasos:\033[0m ";
 
     for (size_t i = 0; i < pasos.size(); ++i)
     {
@@ -124,9 +124,9 @@ void Manual::mostrar(std::ostream& out) const
     }
 
     out << std::endl
-        << "\nDificultad: " << dificultad << std::endl
-        << "Herramienta: " << herramienta << std::endl
-        << "Calificacion: " << calificacion << std::endl;
+        << "\n\033[36mDificultad:\033[0m " << dificultad << std::endl
+        << "\033[36mHerramienta:\033[0m " << herramienta << std::endl
+        << "\033[36mCalificacion:\033[0m " << calificacion << std::endl;
 }
 
 int Manual::getDificultad()

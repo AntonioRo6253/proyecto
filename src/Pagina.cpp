@@ -71,12 +71,12 @@ std::istream& operator>>(std::istream& in, Pagina& p)
 
 void Pagina::mostrar(std::ostream& out) const
 {
-    out << "\n-----------| Advertencia estas usando class Pagina inadecuadamente |-----------\n"
-        << "Titulo: " << titulo << std::endl
-        << "Autor: " << autor << std::endl
-        << "Fecha: " << fecha[0] << '/' << fecha[1] << '/' << fecha[2] << std::endl
-        << "Contenido: " << contenido << std::endl
-        << "Tags: ";
+    out << "\033[31m\n-----------| Advertencia: uso de Pagina (inadecuado) |-----------\033[0m\n"
+        << "\033[36mTitulo:\033[0m " << titulo << std::endl
+        << "\033[36mAutor:\033[0m " << autor << std::endl
+        << "\033[36mFecha:\033[0m " << fecha[0] << '/' << fecha[1] << '/' << fecha[2] << std::endl
+        << "\033[36mContenido:\033[0m " << contenido << std::endl
+        << "\033[36mTags:\033[0m ";
 
     for (size_t i = 0; i < tags.size(); ++i)
     {
@@ -85,20 +85,22 @@ void Pagina::mostrar(std::ostream& out) const
     }
 
     out << std::endl
-        << "Calificacion: " << calificacion << std::endl;
+        << "\033[36mCalificacion:\033[0m " << calificacion << std::endl;
 }
 
 void Pagina::guardar(std::istream& in)
 {
-    std::cout << "\n-----------| Advertencia estas usando class Pagina inadecuadamente |-----------\n";
-    in >> titulo;
-    in >> autor;
+    std::cout << "\n\033[31m-----------| Advertencia: uso de Pagina (inadecuado) |-----------\033[0m\n";
+    std::cout << "\033[36mTitulo [texto]: \033[0m";
+    std::getline(in >> std::ws, titulo);
+    std::cout << "\033[36mAutor [texto]: \033[0m";
+    std::getline(in >> std::ws, autor);
 
     int valor;
     // Leer dia
     do
     {
-        std::cout << "\nDia: ";
+        std::cout << "\n\033[36mDia: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
@@ -106,7 +108,7 @@ void Pagina::guardar(std::istream& in)
     // Leer mes
     do
     {
-        std::cout << "\nMes: ";
+        std::cout << "\n\033[36mMes: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
@@ -114,13 +116,14 @@ void Pagina::guardar(std::istream& in)
     // Leer año
     do
     {
-        std::cout << "\nAño: ";
+        std::cout << "\n\033[36mAño: \033[0m";
         valor = solicitarNum();
     }
     while (valor == -1);
     fecha[2] = valor;
 
-    in >> contenido;
+    std::cout << "\n\033[36mContenido [texto]: \033[0m";
+    std::getline(in >> std::ws, contenido);
 }
 
 

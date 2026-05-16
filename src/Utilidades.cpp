@@ -28,7 +28,7 @@ void Utilidades::pausarTerminal()
 #ifdef _WIN32
     system("pause"); // Windows
 #else
-    std::cout << "Presione ENTER para continuar...";
+    std::cout << "\033[36mPresione ENTER para continuar...\033[0m";
     std::cin.clear(); // limpiar el estado de error
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // eliminar resto de la línea anterior
     std::string tmp;
@@ -40,7 +40,9 @@ void Utilidades::mostrarTitulo(std::string texto)
 {
     int margen = 18;
     std::string linea(texto.length() + (margen * 2), '-'); // Crear borde del titulo
-    std::cout << linea << "\n" << std::string(margen, ' ') << texto << "\n" << linea << "\n";
+    std::cout << "\033[34m" << linea << "\033[0m\n"
+              << std::string(margen, ' ') << "\033[36m" << texto << "\033[0m\n"
+              << "\033[34m" << linea << "\033[0m\n";
 }
 
 int Utilidades::solicitarNum()
@@ -59,7 +61,8 @@ int Utilidades::solicitarNum()
         std::cin.clear();     // Limpiar el estado de error
         std::getline(std::cin, tmp); // descartar todo hasta el '\n'
 #endif
-        std::cerr << std::endl << "Error inesperado: " << err.what() << " No es un numero valido se esperaba uno de estos numeros [1, 2, 3, 4]" << std::endl;
+        std::cerr << std::endl << "\033[31mError inesperado: " << err.what() << "\033[0m"
+              << " " << "\033[33mNo es un numero valido. Se esperaba uno de estos numeros [1, 2, 3, 4]\033[0m" << std::endl;
         pausarTerminal();
         return -1;
     }

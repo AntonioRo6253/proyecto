@@ -24,18 +24,26 @@ void App::iniciar()
     do
     {
         limpiarTerminal();
-        std::cout <<
+std::cout <<
+"──────────────────────────────────────────────"
+"\033[34m"
                   R"(
-──────────────────────────────────────
-                wiki
-        Seleccione una opcion
-             1. Buscar
-             2. TopList
-             3. Añadir
-             4. Eliminar
-             5. Todos los registros
-             6. Salir
-──────────────────────────────────────
+
+            ╷ ╷╷╷╭ ╷   ╶┬╴╭─╴╭─╮╭┬╮
+            │╷││├┴╮│╶─╴ │ ├╴ ├┬╯│││
+            ╰┴╯╵╵ ╵╵    ╵ ╰─╴╵╰╴╵ ╵)"
+"\033[0m"
+                  R"(
+            -----------------------
+            Seleccione una opcion
+                 1. Buscar
+                 2. TopList
+                 3. Añadir
+                 4. Eliminar
+                 5. Todos los registros
+                 6. Salir
+
+──────────────────────────────────────────────
 Seleccionar: )";
         entrada = solicitarNum();
         switch(entrada)
@@ -69,9 +77,9 @@ void App::buscar()
     limpiarTerminal();
     mostrarTitulo("Buscar");
 
-    std::cout << "\n\nBuscar: ";
+    std::cout << "\n\033[36m        Buscar:\033[0m ";
     std::getline(std::cin >> std::ws, busqueda);
-    std::cout << "Que tipo de registro?\n1 [Articulo]\n2 [Manual]\n";
+    std::cout << "\nQue tipo de registro?\n     1 \033[31m[Articulo]\033[0m\n     2 \033[32m[Manual]\033[0m\n└─────────> ";
     int num = solicitarNum();
 
     switch (num)
@@ -80,14 +88,14 @@ void App::buscar()
     {
         if (datos_articulo.empty())
         {
-            std::cout << "No hay Articulos.\n";
+            std::cout << "\033[33mNo hay Articulos.\033[0m\n";
             break;
         }
         for(Articulo a : datos_articulo)
         {
             if(a == busqueda) // Sobrecarga de operador == para comparar con string
             {
-                std::cout << "Registro encontrado" << a;
+                std::cout << "\033[32mRegistro encontrado\033[0m" << a;
                 encontrado = true;
             }
             else if (a != busqueda) // Sobrecarga de operador != para comparar con string
@@ -101,14 +109,14 @@ void App::buscar()
     {
         if (datos_manual.empty())
         {
-            std::cout << "No hay Manuales.\n";
+            std::cout << "\033[33mNo hay Manuales.\033[0m\n";
             break;
         }
         for(Manual m : datos_manual)
         {
             if(m == busqueda) // Sobrecarga de operador == para comparar con string
             {
-                std::cout << "Registro encontrado" << m;
+                std::cout << "\033[32mRegistro encontrado\033[0m" << m;
                 encontrado = true;
             }
             else if (m != busqueda) // Sobrecarga de operador != para comparar con string
@@ -119,10 +127,10 @@ void App::buscar()
         break;
     }
     default:
-        std::cout << "Opcion no valida\n";
+        std::cout << "\033[31mOpcion no valida\033[0m\n";
     }
 
-    if (!encontrado) std::cout << "No se ha encontrado ninuna coincidencia\n";
+    if (!encontrado) std::cout << "\033[33mNo se ha encontrado ninguna coincidencia\033[0m\n";
     pausarTerminal();
 }
 void App::topList()
@@ -152,34 +160,36 @@ void App::topList()
 
     std::cout <<
               R"(
+
         Seleccione una opcion
              1. popular
              2. menos popular
              3. Salir
-──────────────────────────────────────
+
+────────────────────────────────────────────
 Seleccionar: )";
     int num = solicitarNum();
     switch(num)
     {
     case 1:
         if (mejor)
-            std::cout << "Mas alta calificacion:\n" << *mejor;
+            std::cout << "\033[36mMas alta calificacion:\033[0m\n" << *mejor;
         else
-            std::cout << "No hay registros.\n";
+            std::cout << "\033[33mNo hay registros.\033[0m\n";
         break;
     case 2:
         if (peor)
-            std::cout << "Mas baja calificacion:\n" << *peor;
+            std::cout << "\033[36mMas baja calificacion:\033[0m\n" << *peor;
         else
-            std::cout << "No hay registros.\n";
+            std::cout << "\033[33mNo hay registros.\033[0m\n";
         break;
     default:
-        std::cout << "Saliendo... .\n";
+        std::cout << "\033[36mSaliendo...\033[0m\n";
         break;
     }
 
     if (mejor && peor && *mejor != *peor) // Sobrecarga de operador != para comparar Paginas
-        std::cout << "\nHay registros distintos de mayor y peor calificacion.\n";
+        std::cout << "\n\033[36mHay registros distintos de mayor y peor calificacion.\033[0m\n";
     pausarTerminal();
 }
 
@@ -189,7 +199,7 @@ void App::anadir()
     mostrarTitulo("Añadir");
     bool agregado = false;
 
-    std::cout << "Que quieres añadir?\n1 [Articulo]\n2 [Manual]\n";
+    std::cout << "\nQue quieres añadir?\n     1 \033[31m[Articulo]\033[0m\n     2 \033[32m[Manual]\033[0m\n└─────────> ";
     int num = solicitarNum();
     switch (num)
     {
@@ -212,10 +222,10 @@ void App::anadir()
         break;
     }
     default:
-        std::cout << "Opción no valida\n";
+        std::cout << "\033[31mOpción no valida\033[0m\n";
     }
     if (agregado)
-        std::cout << "\nElemento añadido exitosamente!\n";
+        std::cout << "\n\033[32mElemento añadido exitosamente!\033[0m\n";
     pausarTerminal();
 }
 void App::eliminar()
@@ -223,7 +233,7 @@ void App::eliminar()
     limpiarTerminal();
     mostrarTitulo("Eliminar");
 
-    std::cout << "Que quieres eliminar?\n1 [Articulo]\n2 [Manual]\n";
+    std::cout << "\nQue quieres eliminar?\n     1 \033[31m[Articulo]\033[0m\n     2 \033[32m[Manual]\033[0m\n└─────────> ";
     int num = solicitarNum();
     switch (num)
     {
@@ -231,54 +241,58 @@ void App::eliminar()
     {
         if (datos_articulo.empty())
         {
-            std::cout << "No hay articulos.\n";
+            std::cout << "\033[33mNo hay articulos.\033[0m\n";
             break;
         }
-        std::cout << "\nArticulos\n";
+        std::cout << "\n\033[36mArticulos\033[0m\n";
         for (size_t i = 0; i < datos_articulo.size(); ++i)
-            std::cout << (i+1) << ". " << datos_articulo[i].titulo << "\n";
+            std::cout << "\033[36m" << (i+1) << ".\033[0m " << datos_articulo[i].titulo << "\n";
 
-        std::cout << "Elige uno: ";
+        std::cout << "\033[36mElige uno: \033[0m";
         int seleccion = solicitarNum();
         if (seleccion >= 1 && seleccion <= datos_articulo.size())
         {
-            std::cout << "Seguro que quieres eliminar " << datos_articulo[seleccion - 1].titulo << " [y/n]: ";
+            std::cout << "\033[31mSeguro que quieres eliminar \033[0m" << datos_articulo[seleccion - 1].titulo << " \033[31m[y/n]: \033[0m";
             std::string confirm;
             std::cin >> confirm;
-            if(confirm == "y")
+            if(confirm == "y") {
                 datos_articulo.erase(datos_articulo.begin() + (seleccion - 1));
+                std::cout << "\n\033[32mElemento Eliminado exitosamente!\033[0m\n";
+            }
         }
         else
-            std::cout << "Opcion no valida\n";
+            std::cout << "\033[31mOpcion no valida\033[0m\n";
         break;
     }
     case 2:
     {
         if (datos_manual.empty())
         {
-            std::cout << "No hay manuales.\n";
+            std::cout << "\033[33mNo hay manuales.\033[0m\n";
             break;
         }
-        std::cout << "\nManuales\n";
+        std::cout << "\n\033[36mManuales\033[0m\n";
         for (size_t i = 0; i < datos_manual.size(); ++i)
-            std::cout << (i+1) << ". " << datos_manual[i].titulo << "\n";
+            std::cout << "\033[36m" << (i+1) << ".\033[0m " << datos_manual[i].titulo << "\n";
 
-        std::cout << "Elige uno: ";
+        std::cout << "\033[36mElige uno: \033[0m";
         int seleccion = solicitarNum();
         if (seleccion >= 1 && static_cast<size_t>(seleccion) <= datos_manual.size())
         {
-            std::cout << "Seguro que quieres eliminar " << datos_manual[seleccion - 1].titulo << " [y/n]: ";
+            std::cout << "\033[31mSeguro que quieres eliminar \033[0m" << datos_manual[seleccion - 1].titulo << " \033[31m[y/n]: \033[0m";
             std::string confirm;
             std::cin >> confirm;
-            if(confirm == "y")
+            if(confirm == "y"){
                 datos_manual.erase(datos_manual.begin() + (seleccion - 1));
+                 std::cout << "\n\033[32mElemento Eliminado exitosamente!\033[0m\n";
+            }
         }
         else
-            std::cout << "Opcion no valida\n";
+            std::cout << "\033[31mOpcion no valida\033[0m\n";
         break;
     }
     default:
-        std::cout << "Opcion no valida\n";
+        std::cout << "\033[31mOpcion no valida\033[0m\n";
     }
     pausarTerminal();
 }
@@ -292,18 +306,18 @@ void App::mostrarTodoRegistro()
 
     for (Articulo& a : datos_articulo) combinado.push_back(&a);
     for (Manual& m : datos_manual)   combinado.push_back(&m);
-    Pagina** registros = combinado.data();  // crear ptr** para tener apuntador de punteros a clase 
+    Pagina** registros = combinado.data();  // crear ptr** para tener apuntador de punteros a clase
 
     if (combinado.empty())
     {
-        std::cout << "No hay registros.\n\n";
+        std::cout << "\033[33mNo hay registros.\033[0m\n\n";
         pausarTerminal();
         return;
     }
 
     for (size_t i = 0; i < combinado.size(); i++)
     {
-        std::cout << i + 1 << ". \n" << *registros[i];
+        std::cout << "\033[36m" << i + 1 << ".\033[0m \n" << *registros[i];
     }
 
     pausarTerminal();
