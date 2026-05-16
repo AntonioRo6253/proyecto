@@ -317,7 +317,7 @@ void App::mostrarTodoRegistro()
 
     for (size_t i = 0; i < combinado.size(); i++)
     {
-        std::cout << "\033[36m" << i + 1 << ".\033[0m \n" << *registros[i];
+        std::cout << "\n\033[36m" << i + 1 << ".\033[0m \n" << *registros[i];
     }
 
     pausarTerminal();
