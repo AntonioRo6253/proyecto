@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add option="-finput-charset=UTF-8" />
 					<Add option="-fexec-charset=UTF-8" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -24,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,7 +36,17 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/App.h" />
+		<Unit filename="include/Articulo.h" />
+		<Unit filename="include/Manual.h" />
+		<Unit filename="include/Pagina.h" />
+		<Unit filename="include/Utilidades.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/App.cpp" />
+		<Unit filename="src/Articulo.cpp" />
+		<Unit filename="src/Manual.cpp" />
+		<Unit filename="src/Pagina.cpp" />
+		<Unit filename="src/Utilidades.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -5,6 +5,11 @@ obj/
 *.exe
 *.o
 *.log
+
+# Code::Blocks generated metadata (machine-specific)
+*.depend
+*.layout
+
 .DS_Store
 Thumbs.db
 .vs/
